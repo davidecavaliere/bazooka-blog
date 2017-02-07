@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-// import { Logger } from './service/logger.service' ;
+import { AfterViewInit, Component, ViewChild, ElementRef } from '@angular/core';
+import { MdDialog } from '@angular/material';
+import { LoginComponent } from '../../modules/login/login.component';
 
 @Component({
   selector : 'dc-toolbar',
@@ -10,9 +11,9 @@ import { Component } from '@angular/core';
         <md-icon>menu</md-icon>
       </button>
     </div>
-    <div>bazooka blog</div>
+    <div #branding class="branding-title">bazooka blog</div>
     <span style="flex: 1 1 auto;"></span>
-    <button md-button>
+    <button md-button (click)="openDialog()">
       <md-icon>fingerprint</md-icon>
       login
     </button>
@@ -20,5 +21,21 @@ import { Component } from '@angular/core';
   `
 })
 export class ToolbarComponent {
+  @ViewChild('branding') branding : any;
+
+  constructor(
+    private mdDialog : MdDialog
+  ) {
+    console.log(this.branding);
+  }
+
+  openDialog() {
+    console.log('opening dialog')
+    this.mdDialog.open(LoginComponent);
+  }
+
+  ngAfterViewInit() {
+    console.log(this.branding);
+  }
 
 }

@@ -11,7 +11,7 @@ import { Logger } from './service/logger.service';
 
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './directive/toolbar/toolbar.component';
-
+import { LoginComponent } from './modules/login/login.component';
 import { LayoutPaddingDirective, LayoutMarginDirective } from './directive/layout.directive';
 
 @NgModule({
@@ -19,7 +19,8 @@ import { LayoutPaddingDirective, LayoutMarginDirective } from './directive/layou
     AppComponent,
     ToolbarComponent,
     LayoutPaddingDirective,
-    LayoutMarginDirective
+    LayoutMarginDirective,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,9 @@ import { LayoutPaddingDirective, LayoutMarginDirective } from './directive/layou
     MaterialModule.forRoot(),
   ],
   providers: [Logger],
-  bootstrap: [AppComponent, ToolbarComponent]
+  bootstrap: [AppComponent],
+  entryComponents : [LoginComponent]
+
 })
 export class AppModule {
 

@@ -1,17 +1,28 @@
 
 <dc-toolbar></dc-toolbar>
 
-<div fxFill fxLayout="column" layout-padding>
+<div fxFill availableFill fxLayout="column" layout-padding>
 
-  <md-card *ngFor="let item of items" layout-margin>
+  <md-card *ngFor="let item of items" layoutMargin="12px 21%">
     <md-card-header>
-      <md-card-title>title</md-card-title>
-      <md-card-subtitle>subtitle</md-card-subtitle>
+      <md-card-title>{{item.title}}</md-card-title>
+      <md-card-subtitle><i>{{item.date  | date:
+         'fullDate'}}</i></md-card-subtitle>
       <img md-card-avatar src="https://maxcdn.icons8.com/Share/icon/Cinema//avatar1600.png">
     </md-card-header>
     <md-card-content>
-      {{item}}
+      {{item.text}}
     </md-card-content>
+    <md-card-actions>
+      <button md-icon-button>
+        <md-icon>favorite_border</md-icon>
+      </button>
+
+      <button md-icon-button>
+        <md-icon>share</md-icon>
+      </button>
+    </md-card-actions>
+
   </md-card>
 </div>
 <router-outlet></router-outlet>

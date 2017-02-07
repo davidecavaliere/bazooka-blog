@@ -2,6 +2,9 @@
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Barrio');
+
+
 
 html {
    margin: 0px;
@@ -26,7 +29,11 @@ app-root {
 
   & > [fxFill] {
     overflow: auto;
+    // height: calc(100% - 67px);
     // height: 895px
 
   }
 }
+
+
+@import './app/directive/toolbar/toolbar.scss';

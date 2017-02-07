@@ -1,18 +1,21 @@
-import { Directive, ElementRef, Renderer } from '@angular/core';
+import { Directive, ElementRef, Renderer, Input } from '@angular/core';
 
 @Directive({
-  selector : '[layout-margin]'
+  selector : '[layoutMargin]'
 })
 export class LayoutMarginDirective {
 
   constructor(private element: ElementRef, private renderer: Renderer) {
-    console.log('initing LayoutMargin');
-    renderer.setElementStyle(element.nativeElement, 'margin', '12px');
-
-    console.log(element);
   }
-}
 
+  ngOnInit() {
+    this.renderer.setElementStyle(this.element.nativeElement, 'margin', this.style || '12px');
+
+
+  }
+
+  @Input('layoutMargin') style : string;
+}
 
 @Directive({
   selector : '[layout-padding]'
@@ -20,9 +23,18 @@ export class LayoutMarginDirective {
 export class LayoutPaddingDirective {
 
   constructor(private element: ElementRef, private renderer: Renderer) {
-    console.log('initing LayoutPadding');
-    renderer.setElementStyle(element.nativeElement, 'padding', '12px');
+  }
 
-    console.log(element);
+}
+
+@Directive({
+  selector : '[availableHeiaght]'
+})
+export class AvailableHeight {
+  constructor(private element: ElementRef, private renderer: Renderer) {}
+
+  ngOnInit() {
+    console.log('initing available height');
+
   }
 }
