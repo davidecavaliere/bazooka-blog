@@ -1,0 +1,35 @@
+<div fxFill fxLayout="column" fxLayoutAlign="center center" layout-padding>
+  <div fxLayout="row" fxFill fxLayoutAlign="center center">
+    <div class="" fxFlex="50">
+      <md-card>
+        <md-card-title>Login</md-card-title>
+        <md-card-content fxLayout="column" layout-padding>
+          <md-input-container>
+            <input md-input placeholder="email" [(ngModel)]="email" required>
+          </md-input-container>
+          <md-input-container>
+            <input md-input placeholder="password" type="password" [(ngModel)]="password">
+          </md-input-container>
+
+        </md-card-content>
+        <md-card-actions fxLayout="row" fxLayoutAlign="end end">
+          <button md-raised-button class="md-accent" (click)="login()"> login</button>
+          <button md-raised-button class="md-primary"> signup</button>
+
+        </md-card-actions>
+      </md-card>
+
+    </div>
+  </div>
+</div>
+
+<!-- <h2 md-dialog-title> Login </h2>
+<div md-dialog-actions fxLayout="row" fxLayoutAlign="end end">
+  <button md-button class="md-primary" (click)="login();">
+    Login
+  </button>
+  <button md-button class="md-warn" (click)="closeDialog('cancel')">
+    Cancel
+  </button>
+
+</div> -->

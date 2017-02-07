@@ -1,0 +1,24 @@
+<div #flexContainer fxFlexFill fxLayout="column" layout-padding>
+
+  <md-card *ngFor="let item of items" layoutMargin="12px 21%">
+    <md-card-header>
+      <md-card-title>{{item.title}}</md-card-title>
+      <md-card-subtitle><i>{{item.date  | date:
+         'fullDate'}}</i></md-card-subtitle>
+      <img md-card-avatar src="https://avatars3.githubusercontent.com/u/3493522?v=3&s=460">
+    </md-card-header>
+    <md-card-content>
+      {{item.text}}
+    </md-card-content>
+    <md-card-actions>
+      <button md-icon-button>
+        <md-icon>favorite_border</md-icon>
+      </button>
+
+      <button md-icon-button>
+        <md-icon>share</md-icon>
+      </button>
+    </md-card-actions>
+
+  </md-card>
+</div>

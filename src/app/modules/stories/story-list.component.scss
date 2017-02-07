@@ -1,0 +1,21 @@
+div[fxflexfill] {
+  overflow: auto;
+}
+
+[md-card-avatar] {
+  border-radius: 10%;
+}
+
+md-card-title {
+  font-size : 17px;
+  text-transform : uppercase;
+  font-weight: bold;
+}
+
+md-card-subtitle {
+  font-size: smaller;
+}
+
+div.md-card-header-text {
+  padding-left: 12px;
+}

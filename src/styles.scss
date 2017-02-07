@@ -10,6 +10,7 @@ html {
    margin: 0px;
    height: 100%;
    width: 100%;
+   font-family: 'Roboto';
 }
 
 body {
@@ -18,6 +19,11 @@ body {
    width: 100%;
    overflow: hidden;
    height: 958px;
+}
+
+ng-component {
+  display : flex;
+  flex : 1;
 }
 
 app-root {
@@ -34,6 +40,3 @@ app-root {
 
   }
 }
-
-
-@import './app/directive/toolbar/toolbar.scss';

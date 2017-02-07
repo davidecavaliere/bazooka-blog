@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from '@angular/material';
 
 import { Logger } from './service/logger.service';
 
@@ -14,13 +12,20 @@ import { ToolbarComponent } from './directive/toolbar/toolbar.component';
 import { LoginComponent } from './modules/login/login.component';
 import { LayoutPaddingDirective, LayoutMarginDirective } from './directive/layout.directive';
 
+import { StoryListComponent } from './modules/stories/story-list.component';
+
+import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { AuthService } from './service/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     LayoutPaddingDirective,
     LayoutMarginDirective,
-    LoginComponent
+    LoginComponent,
+    StoryListComponent
   ],
   imports: [
     BrowserModule,
@@ -28,11 +33,10 @@ import { LayoutPaddingDirective, LayoutMarginDirective } from './directive/layou
     HttpModule,
     AppRoutingModule,
     FlexLayoutModule.forRoot(),
-    MaterialModule.forRoot(),
+    MaterialModule.forRoot()
   ],
-  providers: [Logger],
-  bootstrap: [AppComponent],
-  entryComponents : [LoginComponent]
+  providers: [Logger, AuthService],
+  bootstrap: [AppComponent]
 
 })
 export class AppModule {
