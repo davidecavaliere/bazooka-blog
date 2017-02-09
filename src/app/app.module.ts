@@ -17,7 +17,7 @@ import { StoryListComponent } from './modules/stories/story-list.component';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthService } from './service/auth.service';
-
+import { SocketService } from './service/socket.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +35,7 @@ import { AuthService } from './service/auth.service';
     FlexLayoutModule.forRoot(),
     MaterialModule.forRoot()
   ],
-  providers: [Logger, AuthService],
+  providers: [Logger, AuthService, SocketService],
   bootstrap: [AppComponent]
 
 })

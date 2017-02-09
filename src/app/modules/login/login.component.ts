@@ -8,6 +8,7 @@ import { AuthService } from '../../service/auth.service';
 export class LoginComponent {
   email    : string;
   password : string;
+  token : string;
 
   constructor(private authService: AuthService) {}
 
@@ -18,7 +19,7 @@ export class LoginComponent {
       password : this.password
     }).then(resp => {
       console.log(resp);
+      this.token = resp.token;
     }).catch(resp => console.error(resp));
-    // console.log()
   }
 }
