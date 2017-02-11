@@ -1,6 +1,6 @@
 <div #flexContainer fxFlexFill fxLayout="column" layout-padding>
 
-  <md-card *ngFor="let item of items" layoutMargin="12px 21%">
+  <md-card *ngFor="let item of stories | async" layoutMargin="12px 21%">
     <md-card-header>
       <md-card-title>{{item.title}}</md-card-title>
       <md-card-subtitle><i>{{item.date  | date:

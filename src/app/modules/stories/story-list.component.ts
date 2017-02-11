@@ -1,19 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from "@angular/core";
-
-function* itemsGenerator(n: number = 0) {
-
-  let item = {
-    title : `title ${n}`,
-    date : new Date(),
-    text  : `body ${n}`,
-  }
-
-  if (n === 0) return item;
-
-  yield item;
-  yield* itemsGenerator(--n);
-
-}
+import { StoryService } from '../../service/story.service';
 
 
 @Component({
@@ -22,18 +8,14 @@ function* itemsGenerator(n: number = 0) {
 })
 export class StoryListComponent {
   @ViewChild('flexContainer') flexContainer : any;
-
+  public stories: any;
 
   items: Array<any> = [];
-  constructor() {
-    var itemsFactory = itemsGenerator(5);
-    let i = itemsFactory.next();
-
-    while (!i.done) {
-
-      this.items.push(i.value);
-      i = itemsFactory.next();
-    }
+  constructor(private storyService: StoryService) {    console.log('initing story list component', this);
+    // storyService.getAll().then(stories => {
+    //   this.stories = stories;
+    // });
+    this.stories = storyService.getAll();
   }
 
 }
