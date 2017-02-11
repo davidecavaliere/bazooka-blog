@@ -18,6 +18,8 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthService } from './service/auth.service';
 import { SocketService } from './service/socket.service';
+import { StoryService } from './service/story.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,7 @@ import { SocketService } from './service/socket.service';
     FlexLayoutModule.forRoot(),
     MaterialModule.forRoot()
   ],
-  providers: [Logger, AuthService, SocketService],
+  providers: [Logger, AuthService, SocketService, StoryService],
   bootstrap: [AppComponent]
 
 })
