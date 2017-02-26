@@ -7,7 +7,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+  <!-- Font Awesome Embed code -->
+  <script src="https://use.fontawesome.com/0178dc5d2f.js"></script>
   <style media="screen">
     html, body {
       margin: 0;
@@ -20,7 +21,7 @@
       width: 100%;
       margin: 0;
       background-color: #3f51b5;
-      font-family: 'Barrio';
+      /*font-family: 'Barrio';*/
       padding: 35% 0;
       text-align: center;
       /*font-size: x-large;*/
@@ -32,7 +33,9 @@
 
   <app-root>
     <div class="loading-mask">
-      <h1 id="loading-text">Loading...</h1>
+      <h1 id="loading-text">
+        <i class="fa fa-refresh fa-spin fa-fw"></i> Loading...
+      </h1>
       <script>
       // setInterval(function() {
       //   var loadingText = document.querySelector('#loading-text');
