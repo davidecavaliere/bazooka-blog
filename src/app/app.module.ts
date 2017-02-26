@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,25 +20,33 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthService } from './service/auth.service';
 import { SocketService } from './service/socket.service';
 import { StoryService } from './service/story.service';
+import { NgMessagesDirective, NgMessageDirective } from './directive/ng-messages.directive';
+import { SignupComponent } from './modules/signup/signup.component';
+
+import { CookieService } from 'angular2-cookie/core';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ToolbarComponent,
-    LayoutPaddingDirective,
-    LayoutMarginDirective,
-    LoginComponent,
-    StoryListComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
     FlexLayoutModule.forRoot(),
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    ReactiveFormsModule
   ],
-  providers: [Logger, AuthService, SocketService, StoryService],
+  declarations: [
+    AppComponent,
+    ToolbarComponent,
+    LayoutPaddingDirective,
+    LayoutMarginDirective,
+    LoginComponent,
+    StoryListComponent,
+    NgMessagesDirective,
+    NgMessageDirective,
+    SignupComponent
+  ],
+  providers: [Logger, AuthService, SocketService, StoryService, CookieService],
   bootstrap: [AppComponent]
 
 })

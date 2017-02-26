@@ -1,35 +1,46 @@
+import { Router } from "@angular/router";
+import { AuthService } from "../../service/auth.service";
+
 import { AfterViewInit, Component, ViewChild, ElementRef } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { LoginComponent } from '../../modules/login/login.component';
 
 @Component({
   selector : 'dc-toolbar',
-  template : `
-  <md-toolbar color="primary">
-    <div>
-      <button md-icon-button routerLink="/">
-        <md-icon>menu</md-icon>
-      </button>
-    </div>
-    <div #branding class="branding-title">bazooka blog</div>
-    <span style="flex: 1 1 auto;"></span>
-    <button md-button routerLink="/login">
-      <md-icon>fingerprint</md-icon>
-      login
-    </button>
-  </md-toolbar>
-  `,
+  templateUrl : './toolbar.component.html',
   styleUrls : ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
   @ViewChild('branding') branding : any;
+  private user : any;
   private dialogRef : any;
 
 
   constructor(
-    private mdDialog : MdDialog
+    private mdDialog : MdDialog,
+    private authService : AuthService,
+    private router : Router
   ) {
-    console.log(this.branding);
+
+    authService.user.subscribe(user => {
+      console.log('user next value', user);
+      this.user = user;
+    }, err => {
+      console.error('error on user subscribed', err);
+    }, () => {
+      console.log('user subscribe completed');
+    })
+
+    // let self = this;
+    // authService.getCurrentUser().then(function(user) {
+    //   console.log('ToolbarComponent: user just logged in', user);
+    //   self.user = user;
+    // });
+  }
+
+  logout() {
+    this.authService.logout();
+
   }
 
   openDialog() {

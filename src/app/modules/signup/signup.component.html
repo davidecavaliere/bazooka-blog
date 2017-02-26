@@ -1,0 +1,83 @@
+<div fxFill fxLayout="column" fxLayoutAlign="center center" layout-padding>
+  <div fxLayout="row" fxFill fxLayoutAlign="center center">
+    <div class="" fxFlex="50">
+      <md-card>
+          <md-card-title>Signup</md-card-title>
+          <md-card-content>
+            <form fxLayout="column" [formGroup]="signupForm" novalidate>
+              <md-input-container  [dividerColor]="signupForm.get('code').touched && signupForm.get('code').invalid ? 'warn' : 'primary'">
+                <!-- <md-icon class="md-icon-button" md-prefix>email</md-icon> -->
+                <input md-input placeholder="Invitation Code" required formControlName="code"/>
+
+                <div ngMessages [for]="signupForm.get('code')">
+                  <div ngMessage="required">
+                    required field
+                  </div>
+                </div>
+              </md-input-container>
+
+              <md-input-container  [dividerColor]="signupForm.get('name').touched && signupForm.get('name').invalid ? 'warn' : 'primary'">
+                <!-- <md-icon class="md-icon-button" md-prefix>email</md-icon> -->
+                <input md-input placeholder="Name" required formControlName="name"/>
+
+                <div ngMessages [for]="signupForm.get('name')">
+                  <div ngMessage="required">
+                    required field
+                  </div>
+                </div>
+              </md-input-container>
+
+
+              <md-input-container  [dividerColor]="signupForm.get('email').touched && signupForm.get('email').invalid ? 'warn' : 'primary'">
+                <!-- <md-icon class="md-icon-button" md-prefix>email</md-icon> -->
+                <input md-input placeholder="Email" required formControlName="email"/>
+
+                <div ngMessages [for]="signupForm.get('email')">
+                  <div ngMessage="required">
+                    required field
+                  </div>
+                  <div ngMessage="simpleEmailRule">
+                    not a valid email
+                  </div>
+                </div>
+              </md-input-container>
+
+              <md-input-container [dividerColor]="signupForm.get('password').touched && signupForm.get('password').invalid ? 'warn' : 'primary'">
+                <input md-input placeholder="Password" type="password"  required formControlName="password">
+                <div ngMessages [for]="signupForm.get('password')">
+                  <div ngMessage="required">
+                    required field
+                  </div>
+                  <div ngMessage="digitCharacterRule">
+                    should contains at least 2 characters
+                  </div>
+                </div>
+              </md-input-container>
+
+              <md-input-container [dividerColor]="signupForm.get('retype').touched && signupForm.get('retype').invalid ? 'warn' : 'primary'">
+                <input md-input placeholder="Retype" type="password"  required formControlName="retype">
+                <div ngMessages [for]="signupForm.get('retype')">
+                  <div ngMessage="required">
+                    required field
+                  </div>
+                  <div ngMessage="mismatchedPasswords">
+                    passwords do not match
+                  </div>
+
+                </div>
+              </md-input-container>
+            </form>
+
+          </md-card-content>
+          <md-card-actions fxLayout="row" fxLayoutAlign="end end">
+            <button md-raised-button class="md-accent">Signup</button>
+
+          </md-card-actions>
+      </md-card>
+
+      <md-card *ngIf="user">
+        <p>{{user | json}}</p>
+      </md-card>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer } from '@angular/core';
 import { Logger } from './service/logger.service';
+import { AuthService } from "./service/auth.service";
 import { MaterialModule, MdDialog } from '@angular/material';
 
 
@@ -16,12 +17,12 @@ export class AppComponent {
     private logger: Logger,
     private element: ElementRef,
     private renderer : Renderer,
-    private mdDialog : MdDialog
+    private mdDialog : MdDialog,
+    private authService: AuthService
   ) {
 
     logger.debug('xtructing app component');
-
+    console.log('authService', authService);
   }
-
 
 }

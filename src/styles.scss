@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Barrio');
@@ -39,4 +39,50 @@ app-root {
     // height: 895px
 
   }
+}
+
+md-input-container {
+  margin: 12px 0;
+}
+
+.md-input-underline .md-input-ripple.md-warn {
+  opacity: 1;
+  transform: scaleY(1);
+
+  // & .md-input-infix > label {
+  //   color: #f44336;
+  // }
+}
+
+.md-error-messages {
+  font-size: x-small;
+  position: absolute;
+  top: 26px;
+  color: red;
+
+  & > div {
+    display: inline-block;
+  }
+}
+
+div[fxflexfill] {
+  overflow: auto;
+}
+
+[md-card-avatar] {
+  border-radius: 10%;
+}
+
+md-card-title {
+  font-size : 17px;
+  text-transform : uppercase;
+  font-weight: bold;
+}
+
+md-card-subtitle {
+  font-size: smaller;
+}
+
+div.md-card-header-text {
+  // padding-left: 12px;
 }

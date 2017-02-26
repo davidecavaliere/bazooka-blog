@@ -1,0 +1,27 @@
+
+<md-toolbar color="primary">
+  <div>
+    <button md-icon-button routerLink="/">
+      <md-icon>menu</md-icon>
+    </button>
+  </div>
+  <div #branding class="branding-title">Bazooka Blog</div>
+  <span style="flex: 1 1 auto;"></span>
+  <button md-button color="" *ngIf="user" [mdMenuTriggerFor]="userMenu">
+    {{user.name}}
+  </button>
+  <md-menu #userMenu="mdMenu">
+    <button md-menu-item>new story</button>
+    <md-divider></md-divider>
+    <button md-menu-item (click)="logout();">logout</button>
+  </md-menu>
+  <button md-button routerLink="/login" *ngIf="!user" routerLinkActive="md-accent">
+    <md-icon>lock</md-icon>
+    Login
+  </button>
+  <button md-button routerLink="/signup" *ngIf="!user" routerLinkActive="md-accent">
+    <md-icon>fingerprint</md-icon>
+    Signup
+  </button>
+
+</md-toolbar>

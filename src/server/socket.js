@@ -15,10 +15,38 @@ function* itemsGenerator(n = 0) {
 
 }
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/bazooka-dev');
+var db = mongoose.connection;
+
+db.on('error', (err) => {
+  console.log('error connecting with db');
+});
+
+db.once('open', () => {
+  console.log('connected to db');
+});
+
 var io = require('socket.io')(server);
 io.on('connection', socket => {
   console.log('client conneted: ', socket.id);
 
+  socket.on('auth:login', credentials => {
+    console.log('got credentials', credentials);
+    console.log('socket', socket);
+    // TODO: check credentials and get User from db
+    let user = {
+      name : 'test',
+      id : socket.id,
+      token : 'auth token'
+    };
+    socket.emit('auth:login', user);
+  });
+
+  socket.on('auth:logout', user => {
+    console.log('logging user out', user);
+    socket.emit('auth:logout');
+  });
 
   socket.on('stories:list', () => {
     console.log('got stories:list event');

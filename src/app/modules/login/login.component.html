@@ -1,24 +1,43 @@
 <div fxFill fxLayout="column" fxLayoutAlign="center center" layout-padding>
   <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <div class="" fxFlex="50">
-      <md-card>
+      <md-card *ngIf="!user">
         <md-card-title>Login</md-card-title>
-        <md-card-content fxLayout="column" layout-padding>
-          <md-input-container>
-            <input md-input placeholder="email" [(ngModel)]="email" required>
-          </md-input-container>
-          <md-input-container>
-            <input md-input placeholder="password" type="password" [(ngModel)]="password">
-          </md-input-container>
+          <md-card-content>
+            <form fxLayout="column" [formGroup]="loginForm" novalidate>
+              <md-input-container  [dividerColor]="loginForm.get('email').touched && loginForm.get('email').invalid ? 'warn' : 'primary'">
+                <!-- <md-icon class="md-icon-button" md-prefix>email</md-icon> -->
+                <input md-input placeholder="Email" required formControlName="email"/>
 
-        </md-card-content>
-        <md-card-actions fxLayout="row" fxLayoutAlign="end end">
-          <button md-raised-button class="md-accent" (click)="login()"> login</button>
-          <button md-raised-button class="md-primary"> signup</button>
+                <div ngMessages [for]="loginForm.get('email')">
+                  <div ngMessage="required">
+                    required field
+                  </div>
+                  <div ngMessage="simpleEmailRule">
+                    not a valid email
+                  </div>
+                </div>
+              </md-input-container>
 
-        </md-card-actions>
+              <md-input-container [dividerColor]="loginForm.get('password').touched && loginForm.get('password').invalid ? 'warn' : 'primary'">
+                <input md-input placeholder="Password" type="password"  required formControlName="password">
+                <div ngMessages [for]="loginForm.get('password')">
+                  <div ngMessage="required">
+                    required field
+                  </div>
+                </div>
+              </md-input-container>
+            </form>
+          </md-card-content>
+          <md-card-actions fxLayoutAlign="end end">
+            <button md-raised-button class="md-accent" (click)="login()">Login</button>
+
+          </md-card-actions>
       </md-card>
 
+      <md-card *ngIf="user">
+        <p>{{user | json}}</p>
+      </md-card>
     </div>
   </div>
 </div>

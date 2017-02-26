@@ -8,6 +8,7 @@ export class SocketService {
   private name : string;
   private host : string = '172.17.0.2:3003';
   public socket : any;
+  public status : Observable<any>;
 
   constructor() {
     console.log('initing SocketService', this);
@@ -17,15 +18,18 @@ export class SocketService {
 
     this.socket.on('error', () => console.error('socket error'));
 
-    return this;
-    // return Observable.create((observer:any) => {
-    //   this.socket.on('create', (item:any) => observer.next({ action : 'create', item : item }));
-    //   this.socket.on('remove', (item:any) => observer.next({ action : 'remove', item :item }));
-    //   return () => this.socket.close();
-    // });
+    this.status = Observable.create((observer:any) => {
+      this.socket.on('connect', () => {
+        observer.next({ status : 'connected' });
+      });
+      this.socket.on('disconnect', () => {
+        observer.next({ status : 'disconnected' });
+      });
+    });
+
   }
 
-  emit(event) {
+  emit(event, message?: any) {
     this.socket.emit(event);
   }
 

@@ -1,25 +1,51 @@
-import { Component } from "@angular/core";
+import { Log, Level } from "ng2-logger/ng2-logger";
+import { Component, Inject } from "@angular/core";
+import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PasswordValidators, EmailValidators } from 'ng2-validators';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   // selector : 'login',
-  templateUrl : './login.component.html'
+  templateUrl : './login.component.html',
+  styleUrls : ['./login.component.scss']
 })
 export class LoginComponent {
-  email    : string;
-  password : string;
-  token : string;
+  private $log = Log.create('Login');
 
-  constructor(private authService: AuthService) {}
+  loginForm = new FormGroup({
+    email    : new FormControl('', EmailValidators.simple()),
+    password : new FormControl()
+  });
+  user : any;
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.$log.d('Ininting loginComponent');
+    authService.user.subscribe((user) => {
+      this.user = user;
+    });
+
+    this.loginForm.valueChanges
+    .debounceTime(500)
+    .subscribe((value) => {
+
+      // console.log('value change', value);
+      // console.log('loggin form.email', this.loginForm.get('email'));
+      // console.log('loggin form.password', this.loginForm.get('password'));
+
+    });
+
+  }
 
   login() {
-    console.log('loggin user', this.email, this.password);
-    this.authService.login({
-      email : this.email,
-      password : this.password
-    }).then(resp => {
-      console.log(resp);
-      this.token = resp.token;
-    }).catch(resp => console.error(resp));
+
+    // console.log('loggin form.name', this.loginForm.get('name'));
+    // console.log('loggin form.password', this.loginForm.get('password'));
+
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value);
+    }
+
   }
 }
