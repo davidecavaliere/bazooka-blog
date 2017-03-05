@@ -14,14 +14,18 @@ export class AuthService {
 
 
     this.socketService.status.subscribe(status => {
-      console.log('status changed', status);
+      console.log('authService: status changed', status);
+      if (status === 'connected') {
+        let user = cookieService.getObject('user');
+        if (user) {
+          console.log('authService: found user in cookies', user);
+          socketService.emit('auth:login', user);
+        }
+      }
+
     });
 
     this.user = Observable.create((observer: any) => {
-          // let user = cookieService.getObject('user');
-          // if (user) {
-          //   observer.next(user);
-          // }
 
           socketService.on('auth:login', (resp) => {
             let user = new User(resp);
@@ -38,8 +42,8 @@ export class AuthService {
           });
 
           socketService.on('auth:login:error', (resp) => {
-            console.log(resp);
-            observer.next(resp);
+            console.error(resp);
+            // observer.next();
           })
 
     })
