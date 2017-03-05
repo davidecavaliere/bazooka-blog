@@ -29,8 +29,8 @@ export class SocketService {
 
   }
 
-  emit(event, message?: any) {
-    this.socket.emit(event);
+  emit(event, data?: any) {
+    this.socket.emit(event, data);
   }
 
   on(event, cb) {

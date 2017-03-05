@@ -1,5 +1,5 @@
 var server = require('http').createServer();
-
+var User = require('./api/user/user.model')
 function* itemsGenerator(n = 0) {
 
   let item = {
@@ -31,16 +31,14 @@ var io = require('socket.io')(server);
 io.on('connection', socket => {
   console.log('client conneted: ', socket.id);
 
-  socket.on('auth:login', credentials => {
-    console.log('got credentials', credentials);
-    console.log('socket', socket);
+  socket.on('auth:login', (credentials) => {
+    console.log('trying login');
+    console.log(credentials);
+    // console.log('socket', socket);
     // TODO: check credentials and get User from db
-    let user = {
-      name : 'test',
-      id : socket.id,
-      token : 'auth token'
-    };
-    socket.emit('auth:login', user);
+
+
+    socket.emit('auth:login', credentials);
   });
 
   socket.on('auth:logout', user => {

@@ -66,7 +66,7 @@ export class AuthService {
   }
 
   login(credentials: any): void {
-    console.log('checking credentials', credentials);
+    console.log('emitting credentials', credentials);
     this.socketService.emit('auth:login', credentials);
   }
 
