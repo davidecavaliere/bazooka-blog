@@ -1,6 +1,28 @@
-<div #flexContainer fxFlexFill fxLayout="column" layout-padding>
+<div #flexContainer fxFlexFill fxLayout="column" style="padding: 20px 12%;">
+  <md-card>
+    <md-card-header>
+      <md-card-title fxFlexfill>
+        <md-input-container>
+          <input md-input [ngModel]="story.title" placeholder="My Awesome Title">
+        </md-input-container>
+      </md-card-title>
+      <img md-card-avatar src="https://avatars3.githubusercontent.com/u/3493522?v=3&s=460">
+    </md-card-header>
+    <md-card-content>
+      <md-input-container fxFlexFill>
+        <textarea md-input placeholder="My awesome story" [ngModel]="story.text" rows="10"></textarea>
+      </md-input-container>
+    </md-card-content>
+    <md-card-actions fxLayoutAlign="center">
 
-  <md-card *ngFor="let item of stories | async" layoutMargin="12px 21%">
+      <button md-icon-button>
+        <md-icon>share</md-icon>
+      </button>
+    </md-card-actions>
+
+  </md-card>
+
+  <md-card *ngFor="let item of stories | async">
     <md-card-header>
       <md-card-title>{{item.title}}</md-card-title>
       <md-card-subtitle><i>{{item.date  | date:

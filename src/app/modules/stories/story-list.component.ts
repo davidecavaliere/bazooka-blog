@@ -1,3 +1,4 @@
+
 import { Component } from "@angular/core";
 import { StoryService } from '../../service/story.service';
 
@@ -15,11 +16,15 @@ function Logger(): PropertyDecorator {
 })
 export class StoryListComponent {
   public stories: any;
+  public story: any;
   @Logger() log: any;
 
   constructor(private storyService: StoryService) {
     console.log('initing story list component', this);
     this.stories = storyService.getAll();
+    this.story = {
+      date : new Date()
+    };
   }
 
 }
