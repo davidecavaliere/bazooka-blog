@@ -15,17 +15,25 @@ export class SocketService {
     this.socket = io.connect(this.host, {
       transports : ['websocket']
     });
-    this.socket.on('connect', () => console.log('connectted'));
-    this.socket.on('disconnect', () => console.log('disconnected'));
 
-    this.socket.on('error', () => console.error('socket error'));
+    this.socket.on('connect', () => {
+      console.log('connectted');
+    });
+
+    this.socket.on('disconnect', () => {
+      console.log('disconnected')
+    });
+
+    this.socket.on('error', () => {
+      console.error('socket error')
+    });
 
     this.status = Observable.create((observer:any) => {
       this.socket.on('connect', () => {
-        observer.next({ status : 'connected' });
+        observer.next('connected');
       });
       this.socket.on('disconnect', () => {
-        observer.next({ status : 'disconnected' });
+        observer.next('disconnected');
       });
     });
 
