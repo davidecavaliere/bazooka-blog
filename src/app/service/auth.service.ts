@@ -18,10 +18,10 @@ export class AuthService {
     });
 
     this.user = Observable.create((observer: any) => {
-          let user = cookieService.getObject('user');
-          if (user) {
-            observer.next(user);
-          }
+          // let user = cookieService.getObject('user');
+          // if (user) {
+          //   observer.next(user);
+          // }
 
           socketService.on('auth:login', (resp) => {
             let user = new User(resp);
