@@ -37,6 +37,11 @@ export class AuthService {
             observer.next(null);
           });
 
+          socketService.on('auth:login:error', (resp) => {
+            console.log(resp);
+            observer.next(resp);
+          })
+
     })
 
     // this.user = new Promise((resolve, reject) => {

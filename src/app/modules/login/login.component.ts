@@ -23,7 +23,12 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {
     this.$log.d('Ininting loginComponent');
     authService.user.subscribe((user) => {
-      this.user = user;
+      if (!user.error) {
+        this.user = user;
+      } else {
+        console.error(user.error);
+      }
+
     });
 
     this.loginForm.valueChanges

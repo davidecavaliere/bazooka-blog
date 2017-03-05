@@ -6,13 +6,15 @@ import * as io from 'socket.io-client';
 @Injectable()
 export class SocketService {
   private name : string;
-  private host : string = '172.17.0.2:3003';
+  private host : string = '172.17.0.3:3003';
   public socket : any;
   public status : Observable<any>;
 
   constructor() {
     console.log('initing SocketService', this);
-    this.socket = io.connect(this.host);
+    this.socket = io.connect(this.host, {
+      transports : ['websocket']
+    });
     this.socket.on('connect', () => console.log('connectted'));
     this.socket.on('disconnect', () => console.log('disconnected'));
 

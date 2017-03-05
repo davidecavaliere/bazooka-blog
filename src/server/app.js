@@ -22,14 +22,14 @@ if(config.seedDB) { require('./config/seed'); }
 var server = require('http').createServer();
 var socketio = require('socket.io')(server, {
   serveClient: true,
-  path: '/socket.io-client',
+  // path: '/socket.io-client',
   transports : ['websocket']
 });
 
 require('./config/socketio')(socketio);
 
 // Start server
-server.listen(config.port, config.ip, function () {
+server.listen(config.port, '0.0.0.0', function () {
   console.info('Socket server listening on %d, in %s mode', config.port, config.mode);
 });
 

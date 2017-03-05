@@ -1,4 +1,3 @@
-var logger = console;
 
 // When the user disconnects.. perform this
 function onDisconnect(socket) {
@@ -6,9 +5,10 @@ function onDisconnect(socket) {
 
 // When the user connects.. perform this
 function onConnect(socket) {
+  console.info('CONNECTED', socket.id);
 
   // Insert sockets below
-require('../api/document/document.socket').register(socket);
+require('../api/user/user.socket').register(socket);
 
 }
 
@@ -31,11 +31,11 @@ module.exports = function (socketio) {
 
   socketio.on('connection', function (socket) {
 
-    logger.debug('query', socket.handshake.query.user);
+    console.log('query', socket.handshake.query.user);
 
     socket.user = socket.handshake.query.user;
 
-    logger.debug('user', socket.user);
+    console.log('user', socket.user);
 
 
     socket.address = socket.handshake.address !== null ?
@@ -47,12 +47,11 @@ module.exports = function (socketio) {
     // Call onDisconnect.
     socket.on('disconnect', function () {
       onDisconnect(socket);
-      logger.info('[%s] DISCONNECTED', socket.id);
+      console.info('[%s] DISCONNECTED', socket.id);
     });
 
     // Call onConnect.
     onConnect(socket);
-    logger.info('CONNECTED', socket.id);
 
 
   });
@@ -94,20 +93,6 @@ var io = require('socket.io')(server);
 io.on('connection', socket => {
   console.log('client conneted: ', socket.id);
 
-  socket.on('auth:login', (credentials) => {
-    console.log('trying login');
-    console.log(credentials);
-    // console.log('socket', socket);
-    // TODO: check credentials and get User from db
-
-
-    socket.emit('auth:login', credentials);
-  });
-
-  socket.on('auth:logout', user => {
-    console.log('logging user out', user);
-    socket.emit('auth:logout');
-  });
 
   socket.on('stories:list', () => {
     console.log('got stories:list event');
