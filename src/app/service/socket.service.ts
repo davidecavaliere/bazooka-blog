@@ -1,6 +1,6 @@
-import {Observable} from "rxjs";
+import { Observable } from "rxjs";
 import { Injectable } from '@angular/core';
-
+import { Logger } from '../decorators/logger.decorator';
 import * as io from 'socket.io-client';
 
 @Injectable()
@@ -9,9 +9,9 @@ export class SocketService {
   private host : string = '172.17.0.2:3003';
   public socket : any;
   public status : Observable<any>;
+  @Logger('SocketService') $log:any;
 
   constructor() {
-    console.log('initing SocketService', this);
     this.socket = io.connect(this.host, {
       transports : ['websocket']
     });

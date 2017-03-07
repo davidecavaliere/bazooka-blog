@@ -11,10 +11,10 @@ import { Logger } from '../../decorators/logger.decorator';
 export class StoryListComponent {
   public stories: any;
   public story: any;
-  @Logger() logger: any;
+  @Logger('StoryListComponent') $log: any;
 
   constructor(private storyService: StoryService) {
-    this.logger.info('initing story list component', this);
+    this.$log.d('initing story list component', this);
 
     this.stories = storyService.getAll();
     this.story = {
