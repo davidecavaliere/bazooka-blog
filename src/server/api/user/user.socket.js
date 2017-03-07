@@ -10,7 +10,7 @@ exports.register = function(socket) {
 
 
 
-    User.findOne({ email : credentials.email }, '-salt', function(err, user) {
+    User.findOne({ email : credentials.email }, function(err, user) {
       if (err) {
         console.error('auth:login:error:moongose', err);
         socket.emit('auth:login:error', err);
