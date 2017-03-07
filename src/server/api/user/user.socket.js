@@ -38,7 +38,12 @@ exports.register = function(socket) {
         }
 
         if (allow) {
-          socket.emit('auth:login', user);
+          user.lastLoggedIn = new Date();
+          user.save();
+          User.findOne({ _id : user._id }, '-hashedPassword -salt', function(err, doc) {
+            // shouldn't get error here
+            socket.emit('auth:login', doc);
+          })
         } else {
           console.log('auth:login:error:invalid-password');
           socket.emit('auth:login:error', {error : 'auth error'})
