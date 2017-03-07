@@ -1,3 +1,4 @@
+import { AdminComponent } from "./admin/admin.component";
 import { StoryListComponent } from "./modules/stories/story-list.component";
 import { LoginComponent } from './modules/login/login.component';
 import { SignupComponent } from './modules/signup/signup.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path : 'signup',
     component : SignupComponent
+  },
+  {
+    path : 'admin',
+    component : AdminComponent
   }
 ];
 

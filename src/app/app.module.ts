@@ -9,9 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { Logger } from './service/logger.service';
 
 import { AppComponent } from './app.component';
-import { ToolbarComponent } from './directive/toolbar/toolbar.component';
+import { ToolbarComponent } from './directives/toolbar/toolbar.component';
 import { LoginComponent } from './modules/login/login.component';
-import { LayoutPaddingDirective, LayoutMarginDirective } from './directive/layout.directive';
+import { LayoutPaddingDirective, LayoutMarginDirective } from './directives/layout.directive';
 
 import { StoryListComponent } from './modules/stories/story-list.component';
 
@@ -20,10 +20,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthService } from './service/auth.service';
 import { SocketService } from './service/socket.service';
 import { StoryService } from './service/story.service';
-import { NgMessagesDirective, NgMessageDirective } from './directive/ng-messages.directive';
+import { NgMessagesDirective, NgMessageDirective } from './directives/ng-messages.directive';
 import { SignupComponent } from './modules/signup/signup.component';
 
 import { CookieService } from 'angular2-cookie/core';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { CookieService } from 'angular2-cookie/core';
     StoryListComponent,
     NgMessagesDirective,
     NgMessageDirective,
-    SignupComponent
+    SignupComponent,
+    AdminComponent
   ],
   providers: [Logger, AuthService, SocketService, StoryService, CookieService],
   bootstrap: [AppComponent]

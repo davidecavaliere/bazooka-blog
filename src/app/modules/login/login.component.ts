@@ -5,14 +5,14 @@ import { AuthService } from '../../service/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidators, EmailValidators } from 'ng2-validators';
 import 'rxjs/add/operator/debounceTime';
-
+import { Logger } from '../../decorators/logger.decorator';
 @Component({
   // selector : 'login',
   templateUrl : './login.component.html',
   styleUrls : ['./login.component.scss']
 })
 export class LoginComponent {
-  private $log = Log.create('Login');
+  @Logger('LoginComponent') $logger:any;
 
   loginForm = new FormGroup({
     email    : new FormControl('', EmailValidators.simple()),
@@ -21,12 +21,12 @@ export class LoginComponent {
   user : any;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.$log.d('Ininting loginComponent');
+    this.$logger.d('Initing loginComponent')
     authService.user.subscribe((user) => {
       if (!user.error) {
         this.user = user;
       } else {
-        console.error(user.error);
+        this.$logger.error(user.error);
       }
 
     });
