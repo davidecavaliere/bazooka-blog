@@ -21,7 +21,8 @@ var UserSchema = new Schema({
   spotify : {},
   avatar : String,
   company : {},
-  settings : {}
+  settings : {},
+  lastLoggedIn : Date
 });
 
 /**
