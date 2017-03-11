@@ -14,6 +14,7 @@ export class ToolbarComponent {
   @ViewChild('branding') branding : any;
   private user : any;
   private dialogRef : any;
+  public isLoading: boolean = false;
 
 
   constructor(
@@ -21,6 +22,8 @@ export class ToolbarComponent {
     private authService : AuthService,
     private router : Router
   ) {
+
+    // TODO find a way to check when socket is busy and set isLoading to true
 
     authService.user.subscribe(user => {
       console.log('user next value', user);
