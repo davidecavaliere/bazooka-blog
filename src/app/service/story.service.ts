@@ -23,4 +23,8 @@ export class StoryService {
     this.socketService.emit('stories:list');
     return this.stories;
   }
+
+  save(story) {
+    this.socketService.emit('story:save', story);
+  }
 }
