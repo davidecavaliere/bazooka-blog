@@ -22,4 +22,8 @@ export class StoryListComponent {
     };
   }
 
+  save() {
+    this.storyService.save(this.story);
+  }
+
 }

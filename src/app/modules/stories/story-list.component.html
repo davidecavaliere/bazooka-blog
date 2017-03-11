@@ -1,21 +1,21 @@
-<div #flexContainer fxFlexFill fxLayout="column" style="padding: 20px 12%;">
+<div #flexContainer fxFlexFill fxLayout="column" layoutPadding>
   <md-card>
     <md-card-header>
-      <md-card-title fxFlexfill>
+      <md-card-title>
         <md-input-container>
-          <input md-input [ngModel]="story.title" placeholder="My Awesome Title">
+          <input md-input [(ngModel)]="story.title" placeholder="My Awesome Title">
         </md-input-container>
       </md-card-title>
       <img md-card-avatar src="/assets/yeoman.png">
     </md-card-header>
     <md-card-content>
       <md-input-container fxFlexFill>
-        <textarea md-input placeholder="My awesome story" [ngModel]="story.text" rows="10"></textarea>
+        <textarea md-input placeholder="My awesome story" [(ngModel)]="story.body"></textarea>
       </md-input-container>
     </md-card-content>
     <md-card-actions fxLayoutAlign="center">
 
-      <button md-icon-button>
+      <button md-icon-button (click)="save();">
         <md-icon>save</md-icon>
       </button>
     </md-card-actions>
