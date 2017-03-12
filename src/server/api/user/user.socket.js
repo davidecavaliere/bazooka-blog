@@ -38,6 +38,7 @@ exports.register = function(socket) {
         }
 
         if (allow) {
+          socket.user = user;
           user.lastLoggedIn = new Date();
           user.save();
           User.findOne({ _id : user._id }, '-hashedPassword -salt', function(err, doc) {
