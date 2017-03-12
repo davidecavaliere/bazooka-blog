@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
   public user: Observable<any>;
+  public _isLoggedIn: any;
 
   constructor(
       private socketService: SocketService,
       private cookieService: CookieService) {
-
 
     this.socketService.status.subscribe(status => {
       // console.log('authService: status changed', status);
@@ -31,7 +31,6 @@ export class AuthService {
             let user = new User(resp);
             observer.next(user);
             cookieService.putObject('user', user);
-            // console.log('auth ok:', user);
           });
 
           socketService.on('auth:logout', (resp) => {
@@ -42,11 +41,15 @@ export class AuthService {
           });
 
           socketService.on('auth:login:error', (resp) => {
-            // console.error(resp);
-            // observer.next();
-          })
-    })
+            observer.error(resp);
+          });
+    });
 
+    this._isLoggedIn = this.user.publishReplay(1);
+
+    this._isLoggedIn.map((v) => !!v);
+
+    this._isLoggedIn.connect();
   }
 
   login(credentials: any): void {
@@ -56,6 +59,10 @@ export class AuthService {
 
   logout() {
     this.socketService.emit('auth:logout', this.user);
+  }
+
+  isLoggedIn() {
+    return this._isLoggedIn;
   }
 
 }
