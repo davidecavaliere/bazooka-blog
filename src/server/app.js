@@ -15,6 +15,7 @@ console.log('config object', config);
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.Promise = global.Promise;
 
 // Populate DB with sample data
 if(config.seedDB) { require('./config/seed'); }
