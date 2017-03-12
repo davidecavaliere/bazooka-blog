@@ -12,7 +12,7 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.logger.log('initing admin component', this);
+    this.logger.d('initing admin component', this);
   }
 
 }

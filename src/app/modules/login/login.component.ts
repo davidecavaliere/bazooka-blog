@@ -23,10 +23,10 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {
     this.$logger.d('Initing loginComponent')
     authService.user.subscribe((user) => {
-      if (!user.error) {
-        this.user = user;
+      if (!user) {
+        this.$logger.e('user not available');
       } else {
-        this.$logger.error(user.error);
+        this.user = user;
       }
 
     });
