@@ -9,21 +9,25 @@ import { Logger } from '../../decorators/logger.decorator';
   styleUrls : ['./story-list.component.scss']
 })
 export class StoryListComponent {
-  public stories: any;
-  public story: any;
+  public stories: any = [];
+  public story: any = {};
   @Logger('StoryListComponent') $log: any;
 
   constructor(private storyService: StoryService) {
     this.$log.d('initing story list component', this);
 
-    this.stories = storyService.getAll();
-    this.story = {
-      date : new Date()
-    };
+    storyService.getAll();
+
+    storyService.stream.subscribe((story) => {
+      console.log('got new story', story);
+      this.stories.unshift(story);
+    });
+
   }
 
   save() {
     this.storyService.save(this.story);
+    this.story = {};
   }
 
 }
