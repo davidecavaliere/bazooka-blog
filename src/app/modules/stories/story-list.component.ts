@@ -3,6 +3,8 @@ import { Component } from "@angular/core";
 import { StoryService } from '../../service/story.service';
 
 import { Logger } from '../../decorators/logger.decorator';
+import { AuthService } from '../../service/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl : 'story-list.component.html',
@@ -11,17 +13,18 @@ import { Logger } from '../../decorators/logger.decorator';
 export class StoryListComponent {
   public stories: any = [];
   public story: any = {};
+  public isLoggedIn: Observable<boolean>;
   @Logger('StoryListComponent') $log: any;
 
-  constructor(private storyService: StoryService) {
+  constructor(
+    private storyService: StoryService,
+    private authService: AuthService
+  ) {
     this.$log.d('initing story list component', this);
 
-    storyService.getAll();
+    this.isLoggedIn = authService.isLoggedIn();
 
-    storyService.stream.subscribe((story) => {
-      console.log('got new story', story);
-      this.stories.unshift(story);
-    });
+    storyService.getAll();
 
   }
 
