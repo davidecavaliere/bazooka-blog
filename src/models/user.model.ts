@@ -8,6 +8,5 @@ export class User {
 
   constructor(user?: any) {
     Object.assign(this, user);
-    console.log('Initing new instance of User model', this);
   }
 }

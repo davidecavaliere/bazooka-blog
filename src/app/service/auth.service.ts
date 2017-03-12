@@ -14,7 +14,7 @@ export class AuthService {
 
 
     this.socketService.status.subscribe(status => {
-      console.log('authService: status changed', status);
+      // console.log('authService: status changed', status);
       if (status === 'connected') {
         let user = cookieService.getObject('user');
         if (user) {
@@ -31,51 +31,25 @@ export class AuthService {
             let user = new User(resp);
             observer.next(user);
             cookieService.putObject('user', user);
-            console.log('auth ok:', user);
+            // console.log('auth ok:', user);
           });
 
           socketService.on('auth:logout', (resp) => {
-            console.log('user logged out');
+            // console.log('user logged out');
             this.cookieService.remove('user');
             let user = new User();
             observer.next(null);
           });
 
           socketService.on('auth:login:error', (resp) => {
-            console.error(resp);
+            // console.error(resp);
             // observer.next();
           })
-
     })
-
-    // this.user = new Promise((resolve, reject) => {
-    //     console.log('waiting for user resolution');
-    //
-    //     let user = cookieService.getObject('user');
-    //     if (user) {
-    //       resolve(user);
-    //     }
-    //
-    //
-    //     socketService.on('auth:login', (resp) => {
-    //         let user = new User(resp);
-    //         resolve(user);
-    //         cookieService.putObject('user', user);
-    //         console.log('auth ok:', user);
-    //     });
-    // });
-
-    console.log(this.user);
-    // this.user.then
-    // socketService.on('auth:login', (resp) => {
-    //   this.user.
-    //   this.isLoggedIn = true;
-    // });
 
   }
 
   login(credentials: any): void {
-    console.log('emitting credentials', credentials);
     this.socketService.emit('auth:login', credentials);
   }
 
