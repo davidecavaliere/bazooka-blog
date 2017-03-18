@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls : ['./story-list.component.scss']
 })
 export class StoryListComponent {
-  public stories: any = [];
+  public stories: Array<any> = [];
   public story: any = {};
   public isLoggedIn: Observable<boolean>;
   @Logger('StoryListComponent') $log: any;
@@ -20,11 +20,16 @@ export class StoryListComponent {
     private storyService: StoryService,
     private authService: AuthService
   ) {
-    this.$log.d('initing story list component', this);
+    this.$log.d('initing story list component');
 
     this.isLoggedIn = authService.isLoggedIn();
 
-    storyService.getAll();
+    storyService.getAll()
+
+
+    .subscribe((story) => {
+      this.stories.unshift(story);
+    });
 
   }
 

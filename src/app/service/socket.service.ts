@@ -6,7 +6,7 @@ import * as io from 'socket.io-client';
 @Injectable()
 export class SocketService {
   private name : string;
-  private host : string = '172.17.0.2:3003';
+  private host : string = '172.17.0.4:3003';
   public socket : any;
   public status : Observable<any>;
   @Logger('SocketService') $log:any;

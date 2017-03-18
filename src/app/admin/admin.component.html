@@ -1,11 +1,58 @@
-<div fxFlexFill fxLayout="row" layoutPadding layoutMargin>
+<div fxFlexFill fxLayout="row" fxLayout.xs="column">
+
+  <md-tab-group fxFlexFill>
+    <md-tab>
+      <template md-tab-label>
+        Profile
+      </template>
+      <div layoutMargin>
+        <md-card>
+          <md-card-title>
+            {{user._id}}
+
+          </md-card-title>
+          <md-card-content fxLayout="column">
+            <md-input-container>
+              <input md-input type="text" [(ngModel)]="usersnapshot.name" placeholder="name">
+            </md-input-container>
+            <md-input-container>
+              <input md-input type="text" [(ngModel)]="usersnapshot.role" placeholder="role">
+            </md-input-container>
+            <md-input-container>
+              <input md-input type="text" [(ngModel)]="usersnapshot.email" placeholder="email">
+            </md-input-container>
+            <md-input-container>
+              <input md-input type="text" [(ngModel)]="usersnapshot.provider" placeholder="provider">
+            </md-input-container>
+            <md-input-container>
+              <input md-input type="text" [(ngModel)]="usersnapshot.lastLoggedIn" placeholder="last logged in">
+            </md-input-container>
+
+          </md-card-content>
+        </md-card>
+      </div>
+    </md-tab>
+    <md-tab>
+      <template md-tab-label>
+        Settings
+      </template>
+      <div layoutMargin>
+        <md-card>
+          <md-card-title>Settings</md-card-title>
+          <md-card-content>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </md-card-content>
+        </md-card>
+      </div>
+    </md-tab>
+  </md-tab-group>
 
 
-  <md-card fxFlex="20">
+  <!-- <md-card fxFlex="20">
     <ul>
-      <!-- Visible to admins -->
+      Visible to admins
       <li>Teachers</li>
-      <!-- Visible to Teachers -->
+      Visible to Teachers
       <li>Questions</li>
       <li>Tests</li>
       <li>Pupils</li>
@@ -13,10 +60,10 @@
     </ul>
   </md-card>
 
-  <md-card fxFlex="80">
+  <md-card fxFlex>
     <p>
       admin works!
     </p>
     <router-outlet></router-outlet>
-  </md-card>
+  </md-card> -->
 </div>

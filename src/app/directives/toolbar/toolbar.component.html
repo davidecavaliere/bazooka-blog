@@ -11,7 +11,7 @@
     {{user.name}}
   </button>
   <md-menu #userMenu="mdMenu">
-    <button md-menu-item>new story</button>
+    <button md-menu-item routerLink="/admin">settings</button>
     <md-divider></md-divider>
     <button md-menu-item (click)="logout();">logout</button>
   </md-menu>

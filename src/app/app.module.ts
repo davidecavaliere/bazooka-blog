@@ -5,6 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 
+import { AngularFireModule } from 'angularfire2';
+
+// Must export the config
+export const firebaseConfig = {
+   apiKey: "AIzaSyC-q9yDnXwoLOqzUQZswZXGDu9RLBwGU3Y",
+   authDomain: "bazooka-c2e65.firebaseapp.com",
+   databaseURL: "https://bazooka-c2e65.firebaseio.com",
+   storageBucket: "bazooka-c2e65.appspot.com",
+   messagingSenderId: "739437306170"
+ };
 
 import { Logger } from './service/logger.service';
 
@@ -24,7 +34,7 @@ import { NgMessagesDirective, NgMessageDirective } from './directives/ng-message
 import { SignupComponent } from './modules/signup/signup.component';
 
 import { CookieService } from 'angular2-cookie/core';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent, MyAsync } from './admin/admin.component';
 
 @NgModule({
   imports: [
@@ -34,7 +44,8 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     FlexLayoutModule.forRoot(),
     MaterialModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   declarations: [
     AppComponent,
@@ -46,7 +57,8 @@ import { AdminComponent } from './admin/admin.component';
     NgMessagesDirective,
     NgMessageDirective,
     SignupComponent,
-    AdminComponent
+    AdminComponent,
+    MyAsync
   ],
   providers: [Logger, AuthService, SocketService, StoryService, CookieService],
   bootstrap: [AppComponent]
