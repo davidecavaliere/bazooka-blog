@@ -7,22 +7,25 @@
   </div>
   <div #branding class="branding-title">Bazooka Blog</div>
   <span style="flex: 1 1 auto;"></span>
-  <button md-button color="" *ngIf="user" [mdMenuTriggerFor]="userMenu">
-    {{user.name}}
-  </button>
-  <md-menu #userMenu="mdMenu">
-    <button md-menu-item routerLink="/admin">settings</button>
-    <md-divider></md-divider>
-    <button md-menu-item (click)="logout();">logout</button>
-  </md-menu>
-  <button md-button routerLink="/login" *ngIf="!user" routerLinkActive="md-accent">
-    <md-icon>lock</md-icon>
-    Login
-  </button>
-  <button md-button routerLink="/signup" *ngIf="!user" routerLinkActive="md-accent">
-    <md-icon>fingerprint</md-icon>
-    Signup
-  </button>
+
+  <div *ngIf="(isLoggedIn | async)" fxLayout.xs="row">
+    <button md-icon-button routerLink="/admin" routerLinkActive="md-accent" mdTooltip="Settings">
+      <md-icon>settings</md-icon>
+    </button>
+    <button md-icon-button (click)="logout();"  mdTooltip="Logout">
+      <md-icon>exit_to_app</md-icon>
+    </button>
+  </div>
+
+  <div *ngIf="!(isLoggedIn | async)">
+
+    <button md-icon-button routerLink="/login" routerLinkActive="md-accent"  mdTooltip="Login">
+      <md-icon>lock</md-icon>
+    </button>
+    <button md-icon-button routerLink="/signup"  routerLinkActive="md-accent"  mdTooltip="Signup">
+      <md-icon>fingerprint</md-icon>
+    </button>
+  </div>
 
 </md-toolbar>
 <md-progress-bar *ngIf="isLoading" color="accent" mode="indeterminate"></md-progress-bar>

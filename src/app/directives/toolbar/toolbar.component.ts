@@ -1,3 +1,5 @@
+
+import {Observable} from "rxjs/Observable";
 import { Router } from "@angular/router";
 import { AuthService } from "../../service/auth.service";
 
@@ -13,7 +15,8 @@ import { Logger } from '../../decorators/logger.decorator';
 })
 export class ToolbarComponent {
   @ViewChild('branding') branding : any;
-  private user : any;
+  private user : Observable<any>;
+  public isLoggedIn: Observable<boolean>;
   private dialogRef : any;
   public isLoading: boolean = false;
   @Logger('ToolbarComponent')
@@ -27,16 +30,20 @@ export class ToolbarComponent {
 
     // TODO find a way to check when socket is busy and set isLoading to true
 
-    authService.user.subscribe(user => {
-      this.user = user;
-    }, err => {
-      this.$log.e('error on user subscribed', err);
-    }, () => {
-    })
+    // this.user =
+     this.user = authService.user;
+     this.isLoggedIn = authService.isLoggedIn();
+    // .subscribe(user => {
+    //   debugger;
+    // }, err => {
+    //   this.$log.d('error on user subscribed', err);
+    // }, () => {
+    // })
 
   }
 
   logout() {
+    debugger;
     this.authService.logout();
 
   }
