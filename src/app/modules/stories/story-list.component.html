@@ -1,59 +1,6 @@
-<div fxFlexFill fxLayout="column" layoutPadding>
+<div fxFlexFill fxLayout="column" layoutPadding="32px">
 
-  <md-card style="margin-bottom : 48px;" *ngIf="isLoggedIn | async">
-    <md-card-header>
-      <md-card-title>
-        <md-input-container>
-          <input md-input [(ngModel)]="story.title" placeholder="My Awesome Title">
-        </md-input-container>
-      </md-card-title>
-      <img md-card-avatar src="/assets/yeoman.png">
-    </md-card-header>
-    <md-card-content>
-      <md-input-container fxFlexFill>
-        <textarea md-input placeholder="My awesome story" [(ngModel)]="story.body"></textarea>
-      </md-input-container>
-    </md-card-content>
-    <md-card-actions fxLayoutAlign="end center" layoutPadding>
-
-      <button md-raised-button color="accent" (click)="save();">
-        <md-icon>save</md-icon>
-      </button>
-    </md-card-actions>
-
-  </md-card>
-
-  <md-card md-theme="dark" *ngFor="let item of stories" style="margin-bottom : 24px;">
-    <md-card-header>
-      <md-card-title>{{item.title}}</md-card-title>
-      <md-card-subtitle><i>{{item.date  | date:
-        'fullDate'}}</i></md-card-subtitle>
-        <img md-card-avatar src="/assets/yeoman.png">
-    </md-card-header>
-    <md-card-content>
-      <p>
-        {{item.body}}
-      </p>
-    </md-card-content>
-    <md-card-actions fxLayoutAlign="end center">
-      <button md-raised-button color="accent">
-        <md-icon>favorite_border</md-icon>
-      </button>
-
-      <button md-raised-button color="warn">
-        <md-icon>share</md-icon>
-      </button>
-
-      <button md-raised-button color="primary">
-        <md-icon>more_</md-icon>
-      </button>
-    </md-card-actions>
-  </md-card>
-
-</div>
-<!-- <div fxLayout="column" layoutPadding>
-  <div fxLayout="row">
-    <md-card style="margin-bottom : 48px;">
+    <md-card style="margin-bottom : 48px;" *ngIf="isLoggedIn | async">
       <md-card-header>
         <md-card-title>
           <md-input-container>
@@ -76,11 +23,7 @@
 
     </md-card>
 
-  </div>
-  <div fxFlex="70">
-    test
-  </div>
-    <md-card md-theme="dark" *ngFor="let item of stories" style="margin-bottom : 24px;">
+    <md-card md-theme="dark" *ngFor="let item of stories">
       <md-card-header>
         <md-card-title>{{item.title}}</md-card-title>
         <md-card-subtitle><i>{{item.date  | date:
@@ -105,6 +48,7 @@
             <md-icon>more_</md-icon>
           </button>
         </md-card-actions>
+        <md-divider></md-divider>
       </md-card>
 
-</div> -->
+</div>
