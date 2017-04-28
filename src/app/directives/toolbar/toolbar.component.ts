@@ -1,10 +1,9 @@
-
-import {Observable} from "rxjs/Observable";
-import { Router } from "@angular/router";
-import { AuthService } from "../../service/auth.service";
-
-import { AfterViewInit, Component, ViewChild, ElementRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { MdDialog } from '@angular/material';
+
+import { AuthService } from '../../service/auth.service';
 import { LoginComponent } from '../../modules/login/login.component';
 import { Logger } from '../../decorators/logger.decorator';
 
@@ -14,6 +13,9 @@ import { Logger } from '../../decorators/logger.decorator';
   styleUrls : ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
+
+  @Input('sidenav') sidenav: any;
+
   @ViewChild('branding') branding : any;
   private user : Observable<any>;
   public isLoggedIn: Observable<boolean>;
@@ -42,8 +44,12 @@ export class ToolbarComponent {
 
   }
 
+
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
+
   logout() {
-    debugger;
     this.authService.logout();
 
   }
@@ -63,6 +69,8 @@ export class ToolbarComponent {
   }
 
   ngAfterViewInit() {
+    this.$log.d('sidenav', this.sidenav);
+
   }
 
 }

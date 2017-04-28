@@ -23,7 +23,7 @@
 
     </md-card>
 
-    <md-card md-theme="dark" *ngFor="let item of stories">
+    <md-card class="story-card" *ngFor="let item of stories">
       <md-card-header>
         <md-card-title>{{item.title}}</md-card-title>
         <md-card-subtitle><i>{{item.date  | date:
