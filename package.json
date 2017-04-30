@@ -1,0 +1,15 @@
+{
+  "name": "aws-single-page-app-via-cloudfront",
+  "version": "1.0.0",
+  "description": "Demonstrating how to deploy a Single Page Application with Serverless",
+  "repository": "<replace>",
+  "author": "",
+  "scripts": {
+    "deploy": "sls deploy"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "^1.10.2",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin"
+  }
+}

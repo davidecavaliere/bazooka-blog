@@ -30,18 +30,6 @@ export class ToolbarComponent {
     private router : Router
   ) {
 
-    // TODO find a way to check when socket is busy and set isLoading to true
-
-    // this.user =
-     this.user = authService.user;
-     this.isLoggedIn = authService.isLoggedIn();
-    // .subscribe(user => {
-    //   debugger;
-    // }, err => {
-    //   this.$log.d('error on user subscribed', err);
-    // }, () => {
-    // })
-
   }
 
 
@@ -50,7 +38,7 @@ export class ToolbarComponent {
   }
 
   logout() {
-    this.authService.logout();
+    // this.authService.logout();
 
   }
 

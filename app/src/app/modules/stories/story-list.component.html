@@ -1,3 +1,4 @@
+
 <div fxFlexFill fxLayout="column" layoutPadding="32px">
 
     <md-card style="margin-bottom : 48px;" *ngIf="isLoggedIn | async">
@@ -23,16 +24,16 @@
 
     </md-card>
 
-    <md-card class="story-card" *ngFor="let item of stories">
+    <md-card class="story-card" *ngFor="let item of stories | async">
       <md-card-header>
         <md-card-title>{{item.title}}</md-card-title>
-        <md-card-subtitle><i>{{item.date  | date:
+        <md-card-subtitle><i>{{item.createdAt  | date:
           'fullDate'}}</i></md-card-subtitle>
           <img md-card-avatar src="/assets/yeoman.png">
         </md-card-header>
         <md-card-content>
           <p>
-            {{item.body}}
+            {{item.text}}
           </p>
         </md-card-content>
         <md-card-actions fxLayoutAlign="end center">
@@ -48,7 +49,6 @@
             <md-icon>more_</md-icon>
           </button>
         </md-card-actions>
-        <md-divider></md-divider>
       </md-card>
 
 </div>
